@@ -22,7 +22,7 @@ class App extends Component {
 	}
 	refreshList = () => {
 		axios
-			.get('http://localhost:8000/api/todos/')
+			.get('https://infinite-savannah-42889.herokuapp.com/api/todos/')
 			.then((res) => this.setState({ todoList: res.data }))
 			.catch((err) => console.log(err));
 	};
@@ -93,17 +93,22 @@ class App extends Component {
 		this.toggle();
 		if (item.id) {
 			axios
-				.put(`http://localhost:8000/api/todos/${item.id}/`, item)
+				.put(
+					`https://infinite-savannah-42889.herokuapp.com/api/todos/${item.id}/`,
+					item
+				)
 				.then((res) => this.refreshList());
 			return;
 		}
 		axios
-			.post('http://localhost:8000/api/todos/', item)
+			.post('https://infinite-savannah-42889.herokuapp.com/api/todos/', item)
 			.then((res) => this.refreshList());
 	};
 	handleDelete = (item) => {
 		axios
-			.delete(`http://localhost:8000/api/todos/${item.id}`)
+			.delete(
+				`https://infinite-savannah-42889.herokuapp.com/api/todos/${item.id}`
+			)
 			.then((res) => this.refreshList());
 	};
 	createItem = () => {
@@ -116,7 +121,9 @@ class App extends Component {
 	render() {
 		return (
 			<main className='content'>
-				<h1 className='text-white text-uppercase text-center my-4'>To-do app</h1>
+				<h1 className='text-white text-uppercase text-center my-4'>
+					To-do app
+				</h1>
 				<div className='row '>
 					<div className='col-md-6 col-sm-10 mx-auto p-0'>
 						<div className='card p-3'>
